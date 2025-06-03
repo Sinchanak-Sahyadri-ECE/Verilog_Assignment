@@ -21,6 +21,8 @@ module mux2to1_tb;
         .Y(Y)
     );
     initial begin
+        $dumpfile("dump.vcd");
+        $dumpvars;
         I = 2'b00; S = 0; #10;
         I = 2'b00; S = 1; #10;
         I = 2'b01; S = 0; #10;
