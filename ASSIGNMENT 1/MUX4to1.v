@@ -1,8 +1,8 @@
 Design code:
 module mux4to1 (
-  input  wire [1:0] S,
+  input  wire [1:0] sel,
   input  wire [3:0] I,
-    output reg      Y
+    output reg      out
 );
     always @(*) begin
         case (sel)
@@ -19,24 +19,24 @@ Testbench:
 `timescale 1ns/1ps
 module mux4to1_tb;
     reg  [3:0] I;
-    reg  [1:0] S;
-    wire Y;
+  reg  [1:0] sel;
+    wire out;
     mux4to1 uut (
         .I(I),
-        .S(S),
-        .Y(Y)
+      .sel(sel),
+      .out(out)
     );
     initial begin
         $dumpfile("dump.vcd");
         $dumpvars;
-        I = 4'b1010; S = 2'b00; #10;
-        I = 4'b1010; S = 2'b01; #10;
-        I = 4'b1010; S = 2'b10; #10;
-        I = 4'b1010; S = 2'b11; #10;
-        I = 4'b1100; S = 2'b00; #10;
-        I = 4'b1100; S = 2'b01; #10;
-        I = 4'b1100; S = 2'b10; #10;
-        I = 4'b1100; S = 2'b11; #10;
+        I = 4'b1010; sel = 2'b00; #10;
+        I = 4'b1010; sel = 2'b01; #10;
+        I = 4'b1010; sel = 2'b10; #10;
+        I = 4'b1010; sel = 2'b11; #10;
+        I = 4'b1100; sel = 2'b00; #10;
+        I = 4'b1100; sel = 2'b01; #10;
+        I = 4'b1100; sel = 2'b10; #10;
+        I = 4'b1100; sel = 2'b11; #10;
         $finish;
     end
 endmodule
